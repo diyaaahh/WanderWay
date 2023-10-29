@@ -1,0 +1,63 @@
+.header{
+    display:flex;
+    padding-left: 5px;
+    align-items: center;
+    
+}
+
+.WanderWay{
+    margin-top: 10px;
+    margin-left:10px;
+    font-size: 20px;
+    color: rgb(233, 30, 98);
+}
+
+.searchbar{
+    padding: 5px;
+    border :solid;
+    border-radius: 2px;
+    border-color:#ccc;
+    border-radius: 20px;
+    display: flex;
+    margin-top: 10px;
+    margin-left:400px;
+    box-shadow:0 1px 1px 1px rgba(204, 204, 204, 0.539);
+    justify-content: center;
+}
+
+.Anywhere{
+    padding-right: 15px;
+    border-right: 1px solid #ccc;
+
+}
+.Anyweek{
+    padding-right: 15px;
+    border-right: 1px solid #ccc;
+    padding-left: 10px;
+}
+.Addguests{
+    padding-right: 15px;
+    border-right: 1px solid #ccc;
+    padding-left: 10px;
+}
+.sidepanel{
+    border-radius: 2px;
+    border-color:#ccc;
+    border-radius: 20px;
+    display: flex;
+    margin-top: 10px;
+    position: absolute;
+    right: 20px;
+    padding : 5px;
+    box-shadow:0 1px 1px 1px rgba(204, 204, 204, 0.539);
+}
+.hamburger{
+    margin-left: 5px;
+    margin-right : 10px;
+}
+.user{
+    background-color:rgb(233, 30, 98);
+    color: white;
+    padding:2px;
+   border-radius: 10px;
+}
