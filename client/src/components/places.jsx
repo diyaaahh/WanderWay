@@ -27,13 +27,30 @@ export default function PlacesPage(){
         ev.preventDefault();
        const {data:filename}= await axios.post('/upload-by-link' ,{link:photoLink});
        setAddedPhotos(prev =>{
-        return[...prev , filename];
+        return[...prev ,filename];
        })
        setphotoLink('')
     }
    const {action} = useParams();
 
-    return(<div>
+    function uploadPhoto(ev){
+      const files =  ev.target.files
+      const data = new FormData()
+
+      for( let i = 0 ; i< files.length ; i++){
+          data.append('photos', files[i])
+      }
+      axios.post('/upload', data , {
+        headers:{'Content-Type': 'multipart/form-data'}
+      }).then(response =>{
+        const{data:filenames} =response
+        setAddedPhotos(prev =>{
+            return[...prev, ...filenames]
+        })
+      })
+    }
+
+return(<div>
         {action !== 'new' &&(
  <div className="divforaddnewplaces">
         
@@ -70,10 +87,11 @@ export default function PlacesPage(){
                 <img className = "rounded-2xl"  src={'http://localhost:4000/uploads/' +link} alt={link}/>
             </div>
         ))}
-        <button className="border bg-transparent rounded-2xl p-2 text-2xl text-gray-600 flex gap-2 items-center" > 
+        <label className="border bg-transparent rounded-2xl p-2 text-2xl text-gray-600 flex gap-2 items-center cursor-pointer" > 
+        <input type ='file' multiple  className="hidden" onChange={uploadPhoto}/>
         <AiOutlineCloudUpload style={{fontSize:"2rem"}}/>
         Upload 
-        </button>
+        </label>
         </div>
         {inputHeader('Description')}
         <textarea className="textarea"
