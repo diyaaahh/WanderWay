@@ -14,9 +14,11 @@ function Header(){
     return(
         <div className="header"> 
     <h3>
-      <Link className="logo" to ='/'><FcDebian  style={{ fontSize: "3rem"}}/></Link>
+      <Link className="logo" to ='/'><FcDebian  style={{ fontSize: "3rem"}}/>
+      <span className="WanderWay"> WanderWay</span>
+      </Link>
     </h3>
-    <span className="WanderWay"> WanderWay</span>
+   
 
     <div className="searchbar">
       <div className="Anywhere">Anywhere </div>
