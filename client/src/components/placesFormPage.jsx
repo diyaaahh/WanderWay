@@ -1,7 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import "./places.css"
 import { Navigate } from "react-router-dom";
-import {BsPlusCircle} from "react-icons/bs"
 import { useState } from "react";
 import Perks from "./perks";
 import axios from 'axios'
@@ -20,6 +19,7 @@ export default function PlacesFormPage(){
     const[checkIn, setCheckIn]= useState('')
     const[checkOut, setCheckOut]= useState('')
     const[maxGuests , setMaxGuests]= useState(1)
+    const[price , setPrice]=useState(100 )
     const [redirect , setRedirect] = useState('')
     
     useEffect(() => {
@@ -37,6 +37,7 @@ export default function PlacesFormPage(){
             setCheckIn(data.checkIn);
             setCheckOut(data.checkOut);
             setMaxGuests(data.maxGuests);
+            setPrice(data.price);
         }
         )
 
@@ -51,7 +52,7 @@ export default function PlacesFormPage(){
 
    async function savePlace(ev){
         ev.preventDefault();
-       const placeData = {title,address, addedPhotos,description,perks,extraInfo, checkIn ,checkOut , maxGuests}
+       const placeData = {title,address, addedPhotos,description,perks,extraInfo, checkIn ,checkOut , maxGuests, price}
 
        if(id){
         await axios.put('/places' ,{id ,...placeData})
@@ -85,7 +86,9 @@ return (
          onChange={ev =>setAddress(ev.target.value)} className="input" />
 
         {inputHeader('Photo')}
+     
        <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos}/>
+       
 
         {inputHeader('Description')}
         <textarea className="textarea"
@@ -105,7 +108,7 @@ return (
         onChange={ev => setExtraInfo(ev.target.value)}
         />
         {inputHeader('Check in and out , max guests')}
-        <div className="grid sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <div>
                 <h3> Check in</h3>
                 <input type ='text'
@@ -124,6 +127,13 @@ return (
                 placeholder="Maximum no of guests that the place holds" className="input" 
                 value={maxGuests}
                  onChange={ev => setMaxGuests(ev.target.value)}/>
+            </div>
+            <div>
+                <h3> Price per night</h3>
+                <input type ='number'
+                placeholder="the price per night" className="input" 
+                value={price}
+                 onChange={ev => setPrice(ev.target.value)}/>
             </div>
         </div>
         <button className="savebutton"> Save</button>

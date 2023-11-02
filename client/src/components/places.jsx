@@ -8,13 +8,14 @@ import axios from 'axios'
 import PhotosUploader from "../photosUploader";
 import { useEffect } from "react";
 import PlacesFormPage from "./placesFormPage";
+import {FaRegTrashCan} from 'react-icons/fa6'
 
 export default function PlacesPage(){
 
     const [places, setPlaces]=useState([])
 
     useEffect(()=>{
-        axios.get('/places').then(({data})=>{
+        axios.get('/owner-places').then(({data})=>{
             setPlaces(data)
         })
     }, [])
@@ -33,8 +34,11 @@ return(
         <Link to ={'/account/places/'+place._id} key ={place._id} className="flex bg-gray-200 p-4 rounded-2xl gap-4 cursor-pointer">
             <div className="flex w-32 h-32 bg-gray-100 ">
                 {place.addedPhotos.length > 0 && (
+                    
                     <img className="image"  src ={'http://localhost:4000/uploads/'+place.addedPhotos[0]} alt ="err"/>
-                )}
+                
+                
+                 )}
             </div>
             <div className="grow-0 shrink">
            <h2 className="text-xl"> {place.title} </h2>
