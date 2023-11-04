@@ -61,3 +61,11 @@
     width:100%;
     object-fit: cover;
 }
+.bookthisplace{
+    margin-top: 5px;
+    padding:5px ;
+    background-color:rgb(233, 30, 98);
+    color: white;
+    border-style: solid;
+    border-radius: 10px;
+}
