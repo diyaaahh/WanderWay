@@ -36,7 +36,7 @@ function LoginPage(){
         <h1 className="text-4xl text-center mt-20"> Login</h1>
         <form className="form" onSubmit={handleLoginSubmit}> 
         <div className="input-container">
-            <input type="email" placeholder="your@email.com"
+            <input  className= "h-10 p-3 rounded-xl " type="email" placeholder="your@email.com"
             value={email}
             onChange={ev => setEmail(ev.target.value)}/>
             <input type ="password" placeholder="password"

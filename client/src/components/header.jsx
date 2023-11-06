@@ -32,7 +32,7 @@ function Header(){
     <div className="user" > <BsFillPersonFill style={{fontSize:"1.25rem"}}/> </div>
     {!!user &&(
       <div>
-        {user.name}
+          {user.name}
       </div>
     )}
     </Link>

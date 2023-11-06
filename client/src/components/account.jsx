@@ -7,6 +7,7 @@ import{BsFillPersonFill} from "react-icons/bs";
 import {AiOutlineUnorderedList} from "react-icons/ai"
 import {BsBuildings} from "react-icons/bs"
 import PlacesPage from './places';
+import BookingsPage from './bookingsPage';
 
 function AccountPage(){
 
@@ -18,7 +19,7 @@ const[redirect , setRedirect] = useState(null)
 let content;
 if(subpage == 'bookings'){
     content =(
-        <div> This is bookings pageee</div>
+        <BookingsPage/>
     )
 }
 else if(subpage == 'places'){

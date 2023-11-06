@@ -32,7 +32,7 @@ async function registerUser(ev) {
             <input type="text" placeholder="Your name" 
              value={name} 
              onChange = {ev => setName(ev.target.value)}/>
-            <input type="email" placeholder="your@email.com" 
+            <input className="h-10 p-3 rounded-xl" type="email" placeholder="your@email.com" 
              value={email}
               onChange={ev => setEmail(ev.target.value)}/>
             <input type ="password" placeholder="password"

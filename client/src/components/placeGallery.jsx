@@ -19,7 +19,7 @@ export default function PlaceGallery({place}) {
             </button>
           </div>
           {place?.addedPhotos?.length > 0 && place.addedPhotos.map(photo => (
-            <div>
+            <div className=""> 
               <Image src={photo} alt=""/>
             </div>
           ))}
@@ -30,23 +30,13 @@ export default function PlaceGallery({place}) {
 
   return (
     <div className="relative">
-      <div className="grid gap-2 grid-cols-[2fr_1fr] rounded-3xl overflow-hidden mx-auto">
+      <div className="grid gap-2 grid-cols-1 rounded-3xl overflow-hidden mx-auto">
         <div>
           {place.addedPhotos?.[0] && (
             <div>
-              <Image onClick={() => setShowAllPhotos(true)} className="aspect-square cursor-pointer object-cover " src={place.addedPhotos[0]} alt=""/>
+              <Image onClick={() => setShowAllPhotos(true)} className="aspect-square cursor-pointer object-cover  " src={place.addedPhotos[0]} alt=""/>
             </div>
           )}
-        </div>
-        <div className="grid">
-          {place.addedPhotos?.[1] && (
-            <Image onClick={() => setShowAllPhotos(true)} className=" aspect-square cursor-pointer object-cover " src={place.addedPhotos[1]} alt=""/>
-          )}
-          <div className="overflow-hidden">
-            {place.addedPhotos?.[2] && (
-              <Image onClick={() => setShowAllPhotos(true)} className="aspect-square cursor-pointer object-cover " src={place.addedPhotos[2]} alt=""/>
-            )}
-          </div>
         </div>
       </div>
       <button onClick={() => setShowAllPhotos(true)} className="flex gap-1 absolute bottom-2 right-2 py-2 px-4 bg-white rounded-2xl shadow shadow-md shadow-gray-500">

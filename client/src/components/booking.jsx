@@ -2,6 +2,7 @@ import {useContext, useEffect, useState} from "react";
 import'./places.css'
 import axios from "axios";
 import {Navigate} from "react-router-dom";
+import {differenceInCalendarDays , format} from 'date-fns'
 
 export default function BookingWidget({place}){
     const [checkIn,setCheckIn] = useState('');
@@ -9,10 +10,30 @@ export default function BookingWidget({place}){
     const [numberOfGuests,setNumberOfGuests] = useState(1);
     const [name,setName] = useState('');
     const [phone,setPhone] = useState('');
+    const [redirect , setRedirect] = useState('')
+
+    let numberOfNights=0;
+    if(checkIn && checkOut){
+      numberOfNights = differenceInCalendarDays(new Date(checkOut), new Date(checkIn))
+    }
+
+   async  function bookThisPlace(){
+      const response =await axios.post('/bookings', 
+      {checkIn, checkOut , numberOfGuests, name , phone , place:place._id, 
+      price: numberOfNights * place.price})
+
+      const bookingId = response.data._id
+      setRedirect(`/`);
+    }
+
+    if (redirect) {
+      return <Navigate to={redirect} />
+    }
+
     return(
-        <div className="bg-white shadow p-4 rounded-2xl ">
+        <div className="bg-white shadow p-4 rounded-2xl w-100 ">
       <div className="text-2xl text-center">
-        Price: Rs{place.price} / per night
+        Price: Rs {place.price} / per night
       </div>
       <div className="border rounded-2xl mt-4">
         <div className="flex">
@@ -28,6 +49,8 @@ export default function BookingWidget({place}){
                    onChange={ev => setCheckOut(ev.target.value)}/>
           </div>
         </div>
+        {numberOfNights > 0 && (
+          <div>
         <div className="py-3 px-4 border-t">
           <label>Number of guests:</label>
           <input type="number"
@@ -44,9 +67,14 @@ export default function BookingWidget({place}){
                    value={phone}
                    onChange={ev => setPhone(ev.target.value)}/>
           </div>
+          </div>
+        )}
       </div>
-      <button  className="bookthisplace">
+      <button  onClick={bookThisPlace}  className="bookthisplace">
         Book this place
+        { numberOfNights > 0 &&(
+        <span> ${numberOfNights * place.price}</span>
+        )}
       </button>
     </div>
     )
